@@ -1,0 +1,16 @@
+<div class="container">
+  <h3><%= @restaurant.name %></h3>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category.capitalize %></p>
+  <%= button_to 'Edit restaurant', edit_restaurant_path(@restaurant), :method => "get", class: "btn btn-primary" %>
+  <h2> Reviews</h2>
+  <% reviews = Review.where(restaurant_id: @restaurant.id)  %>
+  <% reviews.each do |r| %>
+    <div class="wrapper-grey">
+            <p> <%= r.rating %> </p>
+      <p> <%= r.content %> </p>
+    </div>
+  <% end %>
+  <%= button_to 'Add review', new_restaurant_review_path(@restaurant), :method => "get", class: "btn btn-primary" %>
+</div>
